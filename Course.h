@@ -5,7 +5,7 @@
 #include "Time.h"
 using namespace std;
 
-class Course : public Date, Time
+class Course
 {
 
 	friend ostream& operator<<(ostream&, const Course&);
