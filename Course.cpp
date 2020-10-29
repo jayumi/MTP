@@ -9,7 +9,7 @@ Course::Course(const string& num, const string& name, const string& days, const 
 	: courseNum(num), courseName(name), courseDays(days), courseUnits(units),
 	startDate(startD), endDate(endD), startTime(startT), endTime(endT)
 {
-	//cout << "This is the constructor" << endl; (TESTING PURPOSES)
+	cout << "This is the constructor" << endl;
 }
 
 Course::~Course()
