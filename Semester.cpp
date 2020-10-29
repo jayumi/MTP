@@ -4,105 +4,64 @@
 #include "Semester.h"
 using namespace std;
 
-Semester::Semester()
+Semester::Semester(const string& name, const Date& startD, const Date& endD)
 {
-	semesterName = " ";
-	startDate = Date();
-	endDate = Date();
-}
 
-Semester::Semester(string name, Date startD, Date endD)
-{
-	this->semesterName = name;
-	this->startDate.setDate(startD.getMonth(), startD.getDay(), startDate.getYear());
-	this->endDate.setDate(endD.getMonth(), endD.getDay(), endD.getYear());
 }
 
 //GET FUNCTIONS
-string Semester::geSemesterName() const
+string Semester::getSemesterName() const
 {
 	return semesterName;
 }
 
-int Semester::getSemStartMonth() const
+Date Semester::getStartDate() const
 {
-	return startDate.getMonth();
+	return startDate;
 }
 
-int Semester::getSemStartDay() const
+Date Semester::getEndDate() const
 {
-	return startDate.getDay();
-}
-
-int Semester::getSemStartYear() const
-{
-	return startDate.getYear();
-}
-
-int Semester::getSemEndMonth() const
-{
-	return endDate.getMonth();
-}
-
-int Semester::getSemEndDay() const
-{
-	return endDate.getDay();
-}
-
-int Semester::getSemEndYear() const
-{
-	return endDate.getYear();
+	return endDate;
 }
 
 //SET FUNCTIONS
-void Semester::setSemesterName(string& name)
+Semester& Semester::setSemesterName(string name)
 {
 	semesterName = name;
+	return *this;
 }
 
-void Semester::setSemStartMonth(int month)
+Semester& Semester::setStartDate(int month, int day, int year)
 {
 	startDate.setMonth(month);
-}
-
-void Semester::setSemStartDay(int day)
-{
 	startDate.setDay(day);
-}
-
-void Semester::setSemStartYear(int year)
-{
 	startDate.setYear(year);
+	return *this;
 }
 
-void Semester::setSemEndMonth(int month)
+Semester& Semester::setEndDate(int month, int day, int year)
 {
 	endDate.setMonth(month);
-}
-
-void Semester::setSemEndDay(int day)
-{
 	endDate.setDay(day);
-}
-
-void Semester::setSemEndYear(int year)
-{
 	endDate.setYear(year);
+	return *this;
 }
 
 //OVERLOAD OUTPUT
 ostream& operator<<(ostream& output, const Semester& obj)
 {
 	output << "Semester: " << obj.semesterName
-		<< " (" << obj.startDate << " - " << obj.endDate << ")" << endl;
+		<< " (" << obj.startDate << "-" << obj.endDate << ")" << endl;
 	return output;
 }
 
 //OVERLOAD INPUT
 istream& operator>>(istream& input, Semester& obj)
 {
-	getline(input, obj.semesterName);
+	input >> obj.semesterName;
+	input.ignore(2); //ignores "("
 	input >> obj.startDate;
-	input >> obj.endDate;
+	input.ignore();
 	return input;
 }
