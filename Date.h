@@ -1,4 +1,5 @@
 #ifndef DATE_H
+#define DATE_H
 #include <iostream>
 using namespace std;
 
@@ -11,21 +12,23 @@ private:
 	int month;
 	int day;
 	int year;
-	void checkDate();
+	int checkDate(int) const;
 
 public:
 	Date(int = 1, int = 1, int = 1990);
-	~Date();
+
+	//SET
 	Date& setDate(int, int, int);
 	Date& setMonth(int);
 	Date& setDay(int);
 	Date& setYear(int);
-
-
+	
+	//GET
 	int getMonth() const;
 	int getDay() const;
 	int getYear() const;
 
+	//OVERLOAD OPERATORS
 	bool operator< (const Date&);
 	bool operator> (const Date&);
 	bool operator<= (const Date&);
