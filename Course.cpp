@@ -9,7 +9,7 @@ Course::Course(const string& num, const string& name, const string& days, const 
 	: courseNum(num), courseName(name), courseDays(days), courseUnits(units),
 	startDate(startD), endDate(endD), startTime(startT), endTime(endT)
 {
-	cout << "This is the constructor" << endl;
+	//cout << "This is the constructor" << endl; (TESTING PURPOSES)
 }
 
 Course::~Course()
@@ -89,14 +89,14 @@ Course& Course::setCourseUnit(const double units)
 double Course::calcDailyDuration() const
 {
 	double duration;
-	duration = getEndTime() - getStartTime();
+	duration = getStartTime() - getEndTime();
 	return duration;
 }
 
 ostream& operator<<(ostream& output, const Course& obj)
 {
-	output << "Course Info:\t" << obj.courseNum << "\n"
-		<< "# of Units: \t" << obj.courseUnits << "\n"
+	output << "Course Info:\t" << obj.courseNum << " -- " << obj.courseName << endl
+		<< "# of Units: \t" << obj.courseUnits << endl
 		<< "Course Dates:\t" << obj.startDate << " - " << obj.endDate << "\n"
 		<< "Meeting Days:\t" << obj.courseDays << "\n"
 		<< "Meeting Time:\t" << obj.startTime << " - " << obj.endTime << "\n"
