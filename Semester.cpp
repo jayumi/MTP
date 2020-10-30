@@ -5,6 +5,7 @@
 using namespace std;
 
 Semester::Semester(const string& name, const Date& startD, const Date& endD)
+	: semesterName(name), startDate(startD), endDate(endD)
 {
 
 }
@@ -63,5 +64,6 @@ istream& operator>>(istream& input, Semester& obj)
 	input.ignore(2); //ignores "("
 	input >> obj.startDate;
 	input.ignore();
+	input >> obj.endDate;
 	return input;
 }
