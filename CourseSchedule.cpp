@@ -5,7 +5,7 @@
 using namespace std;
 
 CourseSchedule::CourseSchedule(const string& name, const Semester& sem, int max)
-	:coursePtr(nullptr), studentName(name), semester(sem)
+	:coursePtr(nullptr), studentName(name), semester(sem), maxSize(max), numOfCourses(0)
 {
 	coursePtr = new Course[maxSize];
 }
@@ -33,7 +33,7 @@ Semester CourseSchedule::getSemester() const
 	return semester;
 }
 
-int CourseSchedule::getNumOfCourses()const
+int CourseSchedule::getNumOfCourses() const
 {
 	return numOfCourses;
 }
@@ -114,6 +114,11 @@ bool CourseSchedule::removeCourse(const Course& remCourse)
 	{
 		return false;
 	}
+}
+
+void CourseSchedule::operator=(const CourseSchedule&) const
+{
+
 }
 
 // OUTPUT OVERLOAD
