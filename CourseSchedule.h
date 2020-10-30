@@ -20,7 +20,7 @@ private:
 	bool checkDates(const Semester&, const Date&, const Date&) const; //utility function
 
 public:
-	CourseSchedule(const string& = "Student Name",const Semester& = Semester(), int = 0);
+	CourseSchedule(const string & = "Student Name", const Semester & = Semester(), int = 0);
 	CourseSchedule(const CourseSchedule&);
 	~CourseSchedule();
 
@@ -31,8 +31,11 @@ public:
 
 	//SET
 	void setStudentName(string);
-	
+
 	bool addCourse(const Course&);
 	bool removeCourse(const Course&);
+
+	void operator=(const CourseSchedule&) const;
+
 };
 #endif // !CourseSchedule_H
