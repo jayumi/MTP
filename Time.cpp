@@ -11,20 +11,28 @@ Time::Time(int hour, int minute)
 	setTime(hour, minute);
 }
 
-//Convert Time to Universal
-void Time::convertUniversal(int hr, int min, string mer)
+//convert time to universal
+void Time::convertUniversal(int hr, int min, bool mer)
 {
-	if (hr == 12)
+	if (hr == 0)
+	{
+		hr = 12;
+	}
+	else if (hr == 12)
 	{
 		hr = 0;
 	}
-	if (mer == "AM")
+	
+	if (hr <= 12 && hr >= 0)
 	{
-		setTime(hr, min);
-	}
-	else
-	{
-		setTime(hr + 12, min);
+		if (mer)
+		{
+			setTime(hr, min);
+		}
+		else
+		{
+			setTime(hr + 12, min);
+		}
 	}
 }
 
@@ -33,21 +41,18 @@ Time& Time::setTime(int hour, int minute)
 {
 	setHour(hour);
 	setMinute(minute);
-
 	return *this;
 }
 
 Time& Time::setHour(int h)
 {
 	hour = (h >= 0 && h < 24) ? h : 0;
-
 	return *this;
 }
 
 Time& Time::setMinute(int m)
 {
 	minute = (m >= 0 && m < 24) ? m : 0;
-
 	return *this;
 }
 
@@ -80,20 +85,15 @@ void Time::printStandard() const
 double Time::operator-(const Time& t1)
 {
 	double timeDiff;
-	timeDiff = abs((double(getHour()) + double(getMinute()) / 60) - (double(t1.hour)
-		+ double(t1.minute) / 60));
-	
-	return timeDiff;
+	timeDiff = double(hour) + double(minute) / 60.0 - (double(t1.hour) - double(t1.minute) / 60.0);
+	return abs(timeDiff);
 }
 
 // << overload operator
 ostream& operator <<(ostream& output, const Time& t1)
 {
-	int hr = t1.hour;
-	int min = t1.minute;
-	output << ((hr == 0 || hr == 12) ? 12 : hr % 12) << ":"
-	<< setfill('0') << setw(2) << min << " " << (hr < 12 ? "AM" : "PM") << endl;
-
+	output << ((t1.hour == 0 || t1.hour == 12) ? 12 : t1.hour % 12)
+		<< ":" << setfill('0') << t1.minute << (t1.hour < 12 ? "AM" : "PM");
 	return output;
 }
 
@@ -106,8 +106,14 @@ istream& operator >>(istream& input, Time& t1)
 	input >> setw(2) >> min;
 	input.ignore();
 	input >> setw(2) >> meridiem;
-	transform(meridiem.begin(), meridiem.end(), meridiem.begin(), ::toupper);
-	t1.convertUniversal(hr, min, meridiem);
 	
+	if (meridiem == "AM" || meridiem == "am")
+	{
+		t1.convertUniversal(hr, min, false);
+	}
+	else if (meridiem == "PM" || meridiem == "pm")
+	{
+		t1.convertUniversal(hr, min, false);
+	}
 	return input;
 }
