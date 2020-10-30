@@ -22,8 +22,9 @@ private:
 	Time endTime;
 
 public:
-	Course(const string& = " ", const string& = " ", const string& = " ", const double = 0, 
+	Course(const string& = "NULL", const string& = "NULL", const string& = "NULL", const double = 0, 
 		const Date& = Date(), const Date& = Date(), const Time& = Time(), const Time& = Time());
+	
 	~Course();
 
 	//GET
