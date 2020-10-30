@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 using namespace std;
 #ifndef TIME_H
@@ -11,7 +12,7 @@ class Time
 private:
 	int hour;
 	int minute;
-	void convertUniversal(int, int, string);
+	void convertUniversal(int, int, bool);
 
 public:
 	Time(int = 0, int = 0);
