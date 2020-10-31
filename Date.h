@@ -1,40 +1,38 @@
+
 #ifndef DATE_H
 #define DATE_H
-#include <iostream>
-using namespace std;
 
 class Date
 {
-	friend ostream& operator << (ostream&, const Date&);
-	friend istream& operator >> (istream&, Date&);
+    friend ostream& operator<<(ostream&, const Date&);
+    friend istream& operator>>(istream&, Date&);
+    
+    private:
+        int month; //1-12
+        int day; //1-31 depending on month
+        int year; //any year over 1989 and not neg
+        void checkDate(); // validate date - sets dates out of range to month - 1, day - 1, year 1990
 
-private: 
-	int month;
-	int day;
-	int year;
-	int checkDate(int) const;
-
-public:
-	Date(int = 1, int = 1, int = 1990);
-
-	//SET
-	Date& setDate(int, int, int);
-	Date& setMonth(int);
-	Date& setDay(int);
-	Date& setYear(int);
-	
-	//GET
-	int getMonth() const;
-	int getDay() const;
-	int getYear() const;
-
-	//OVERLOAD OPERATORS
-	bool operator< (const Date&);
-	bool operator> (const Date&);
-	bool operator<= (const Date&);
-	bool operator>= (const Date&);
-	bool operator== (const Date&);
-	bool operator!= (const Date&);
+        
+    public:
+        Date(int = 1, int = 1, int = 1990);
+        ~Date();
+        Date& setDate(int, int, int);
+        Date& setMonth(int);
+        Date& setDay(int);
+        Date& setYear(int);
+    
+        int getMonth() const;
+        int getDay() const;
+        int getYear() const;
+    
+        bool operator< (const Date&);
+        bool operator> (const Date&);
+        bool operator<= (const Date&);
+        bool operator>= (const Date&);
+        bool operator== (const Date&);
+        bool operator!= (const Date&);
+               
 };
 
-#endif // !DATE_H
+#endif

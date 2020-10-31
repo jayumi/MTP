@@ -1,187 +1,195 @@
 #include <iostream>
 #include <iomanip>
-#include "Date.h"
 using namespace std;
 
-Date::Date(int m, int d, int y)
+#include "Date.h"
+
+//constructor validates month and calls utility function to validate day
+Date::Date(int mn, int dy, int yr)
 {
-	setDate(m, d, y);
+    setDate(mn, dy, yr);
 }
 
-Date& Date::setDate(int m, int d, int y)
+//DESTRUCTOR
+Date::~Date()
 {
-	setMonth(m);
-	setDay(d);
-	setYear(y);
 
-	return *this;
 }
 
-int Date::checkDate(int check) const
+Date& Date::setDate(int mn, int dy, int yr)
 {
-	static const int daysPerMonth[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-
-	if (check > 0 && check <= daysPerMonth[month])
-	{
-		return check;
-	}
-
-	if ((month == 2 && day == 29 && (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)))
-		&& (day <= 0 || day > daysPerMonth[month]))
-	{
-		return check;
-	}
-
-	cout << "Invalid Day " << check << " was set to 1" << endl;
-	return 1;
+    setMonth(mn);
+    setDay(dy);
+    setYear(yr);
+    
+    return *this;
 }
 
-Date& Date::setMonth(int m)
+//utility functino to check dates
+void Date::checkDate()
 {
-	month = (m <= 1 || m <= 12) ? m : 0;
-	return *this;
+    static const int daysPerMonth[13] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
+    
+    if(month <= 0 || month > 12)
+    {
+        month = 1;
+    }
+    
+    if (!(month == 2 && day == 29 && (year  % 400 == 0 || (year % 4  == 0 && year % 100 != 0))) && (day <= 0 || day > daysPerMonth[month]))
+    {
+        day = 1;
+    }
+
+    
+    if (year <= 1989)
+    {
+        year = 1990;
+    }
+
 }
 
-Date& Date::setDay(int d)
+
+
+Date& Date::setMonth(int mn)
 {
-	day = d;
-	return *this;
+    month = mn;
+    checkDate();
+    return *this;
 }
 
-Date& Date::setYear(int y)
+Date& Date::setDay(int dy)
 {
-	year = (y > 0) ? y : 0;
-	return *this;
+
+    day = dy;
+    checkDate();
+    return *this;
 }
+
+Date& Date::setYear(int yr)
+{
+    year = yr;
+    checkDate();
+    return *this;
+}
+
 
 int Date::getMonth() const
 {
-	return month;
+    return month;
 }
 
 int Date::getDay() const
 {
-	return day;
+    return day;
 }
 
 int Date::getYear() const
 {
-	return year;
+    return year;
 }
 
-bool Date::operator<(const Date& right)
+
+bool Date::operator<(const Date &d1)
 {
-	if (year < right.year)
-	{
-		return true;
-	}
-	else if ((year == right.year) && (month < right.month)) 
-	{
-		return true;
-	}
-	else if ((year == right.year) && (month < right.month) && (day < right.day))
-	{
-		return false;
-	}
-	else
-	{
-		return false;
-	}
-	return false;
+    bool flag;
+    
+    if (year < d1.year)
+        flag = true;
+    else if ((year == d1.year) && (month < d1.month))
+        flag = true;
+    else if ((year == d1.year) && (month < d1.month) && (day < d1.day))
+        flag = true;
+    else
+        flag = false;
+    
+    return flag;
 }
 
-bool Date::operator>(const Date& right)
+bool Date::operator>(const Date &d1)
 {
-	if (year > right.year)
-	{
-		return true;
-	}
-	else if ((year == right.year) && (month > right.month))
-	{
-		return true;
-	}
-	else if ((year == right.year) && (month > right.month) && (day > right.day))
-	{
-		return false;
-	}
-	else
-	{
-		return false;
-	}
-	return false;
+    bool flag;
+    if (year > d1.year)
+        flag = true;
+    else if ((year == d1.year) && (month > d1.month))
+        flag = true;
+    else if ((year == d1.year) && (month == d1.month) && (day > d1.day))
+        flag = true;
+    else
+        flag = false;
+    return flag;
 }
 
-bool Date::operator<=(const Date& right)
+bool Date::operator<=(const Date &d1)
 {
-	if (year <= right.year)
-	{
-		return true;
-	}
-	else if ((year == right.year) && (month <= right.month))
-	{
-		return true;
-	}
-	else if ((year == right.year) && (month <= right.month) && (day <= right.day))
-	{
-		return false;
-	}
-	else
-	{
-		return false;
-	}
-	return false;
+    bool flag;
+    
+    if (year <= d1.year)
+        flag = true;
+    else if ((year == d1.year) && (month <= d1.month))
+        flag = true;
+    else if ((year == d1.year) && (month == d1.month) && (day <= d1.day))
+        flag = true;
+    else
+        flag = false;
+    
+    return flag;
 }
 
-bool Date::operator>=(const Date& right)
+bool Date::operator>=(const Date &d1)
 {
-	if (year >= right.year)
-	{
-		return true;
-	}
-	else if ((year == right.year) && (month >= right.month))
-	{
-		return true;
-	}
-	else if ((year == right.year) && (month >= right.month) && (day >= right.day))
-	{
-		return false;
-	}
-	else
-	{
-		return false;
-	}
-	return false;
+    bool flag;
+    
+    if (year >= d1.year)
+        flag = true;
+    else if ((year == d1.year) && (month >= d1.month))
+        flag = true;
+    else if ((year == d1.year) && (month == d1.month) && (day >= d1.day))
+        flag = true;
+    else
+        flag = false;
+    
+    return flag;
 }
 
-bool Date::operator==(const Date& right)
+bool Date::operator==(const Date &d1)
 {
-	return (month == right.month && day == right.day && year == right.year);
+    bool flag;
+    
+    if((month == d1.month) && (day == d1.day) && (year == d1.year))
+        flag = true;
+    else
+        flag = false;
+    
+    return flag;
 }
 
-bool Date::operator!=(const Date& right)
+bool Date::operator!=(const Date &d1)
 {
-	if (year != right.year && month != right.month && day != right.day)
-		return true;
-	else 
-	{
-		return false;
-	}
-	return false;
+    bool flag;
+    
+    if((month != d1.month) || (day != d1.day) || (year != d1.year))
+        flag = true;
+    else
+        flag = false;
+    
+    return flag;
 }
 
-ostream& operator<<(ostream& output, const Date& obj)
+ostream& operator<<(ostream& output,const Date& obj)
 {
-	output << setfill('0') << setw(2) << obj.month << '/' << setfill('0') 
-		<< setw(2) << obj.day << '/' << obj.year;
-	return output;
+    output << setfill ('0') << setw(2) << obj.month << '/' <<  setfill ('0') << setw(2) << obj.day << '/'  << obj.year;
+    
+    return output;
 }
 
 istream& operator>>(istream& input, Date& obj)
 {
-	input >> obj.month;
-	input.ignore();
-	input >> obj.day;
-	input.ignore();
-	input >> obj.year;
-	return input;
+    input >> obj.month;
+    input.ignore();
+    input >> obj.day;
+    input.ignore();
+    input >> obj.year;
+    
+    obj.checkDate();
+    return input;
 }
