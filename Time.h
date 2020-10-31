@@ -12,7 +12,7 @@ class Time
 private:
 	int hour;
 	int minute;
-	void convertUniversal(int, int, bool);
+	void convertUniversal(int, int, string);
 
 public:
 	Time(int = 0, int = 0);
