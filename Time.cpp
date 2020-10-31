@@ -22,7 +22,7 @@ void Time::convertUniversal(int hr, int min, bool mer)
 	{
 		hr = 0;
 	}
-	
+
 	if (hr <= 12 && hr >= 0)
 	{
 		if (mer)
@@ -52,7 +52,7 @@ Time& Time::setHour(int h)
 
 Time& Time::setMinute(int m)
 {
-	minute = (m >= 0 && m < 24) ? m : 0;
+	minute = (m >= 0 && m < 60) ? m : 0;
 	return *this;
 }
 
@@ -77,8 +77,8 @@ void Time::printUniversal() const
 void Time::printStandard() const
 {
 	cout << ((hour == 0 || hour == 12) ? 12 : hour % 12) << ":"
-		<< setfill('0') << setw(2) << minute << " " 
-		<< (hour < 12 ? "AM" : "PM" ) << endl;
+		<< setfill('0') << setw(2) << minute << " "
+		<< (hour < 12 ? "AM" : "PM") << endl;
 }
 
 //Overload -operator
@@ -106,7 +106,7 @@ istream& operator >>(istream& input, Time& t1)
 	input >> setw(2) >> min;
 	input.ignore();
 	input >> setw(2) >> meridiem;
-	
+
 	if (meridiem == "AM" || meridiem == "am")
 	{
 		t1.convertUniversal(hr, min, false);
