@@ -79,20 +79,14 @@ int main() {
             }
             else
             {
-                cout << "\nERROR: INVALID INPUT!" << endl;
+                cout << "\nERROR: Check to make sure the class dates fall within the semester dates &" << endl;
+                cout << "class time(s) are in the right format (00:00 AM/PM)" << endl;
             }
             break;
         }
 
         case '2':
         {
-            Time startTime;
-            Time endTime;
-
-            Date startDate;
-            Date endDate;
-
-            double courseUnits;
             string courseName, courseNum, meetDays;
 
             if (courseSchedule.getNumOfCourses() == 0)
@@ -113,7 +107,7 @@ int main() {
             }
             else 
             {
-                cout << "\nERROR: INVALID INPUT!" << endl;
+                cout << "\nERROR: Invalid input" << endl;
             }
             break;
         }
