@@ -95,7 +95,7 @@ ostream& operator<<(ostream& output, const Time& t1)
     int hr = t1.hour;
     int min = t1.minute;
     output << ((hr == 0 || hr == 12) ? 12 : hr % 12) << ":"
-        << setfill('0') << setw(2) << min << " " << (hr < 12 ? "AM" : "PM") << endl;
+        << setfill('0') << setw(2) << min << " " << (hr < 12 ? "AM" : "PM");
 
     return output;
 }
