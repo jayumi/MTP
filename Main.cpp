@@ -60,7 +60,7 @@ int main() {
             cout << "Number of units for course: ";
             cin >> courseUnits;
             cin.ignore();
-            cout << "Enter course meeting days (M-T-W-TH-F): ";
+            cout << "Enter course meeting days (MTWTHF): ";
             getline(cin, meetingDays);
             cout << "Enter the starting time (00:00 AM/PM): ";
             cin >> startTime;
@@ -75,11 +75,11 @@ int main() {
 
             if (courseSchedule.addCourse(course))
             {
-                cout << "Course has been successfully added." << endl;
+                cout << "\nCourse has been successfully added." << endl;
             }
             else
             {
-                cout << "ERROR: INVALID INPUT!" << endl;
+                cout << "\nERROR: INVALID INPUT!" << endl;
             }
             break;
         }
@@ -100,7 +100,7 @@ int main() {
                 cout << "\nYou currently have no courses to remove.\n";
                 break;
             }
-            cout << "Enter Course Number: ";
+            cout << "\nEnter Course Number: ";
             getline(cin, courseNum);
             cout << "Enter Course Name: ";
             getline(cin, courseName);
@@ -109,11 +109,11 @@ int main() {
 
             if (courseSchedule.removeCourse(course)) 
             {
-                cout << "\nThe course has been successfully removed." << endl;
+                cout << "\nThe course has been successfully removed.\n";
             }
             else 
             {
-                cout << "ERROR: INVALID INPUT!" << endl;
+                cout << "\nERROR: INVALID INPUT!" << endl;
             }
             break;
         }
