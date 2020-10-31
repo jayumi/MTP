@@ -41,13 +41,11 @@ Time& Time::setTime(int hour, int minute)
     return *this;
 }
 
-
 Time& Time::setHour(int h)
 {
     hour = (h >= 0 && h < 24) ? h : 0;  //validates hour, if valid set to h, else set to 0
     return *this;
 }
-
 
 Time& Time::setMinute(int m)
 {
@@ -68,7 +66,6 @@ int Time::getMinute() const  //must be const since prototype is const
 {
     return minute;
 }
-
 
 /*PRINT FUNCTIONS:  Normally do not modify private member data so should be const*/
 
@@ -91,9 +88,6 @@ double Time::operator-(const Time& t1)
     timeDif = abs((double(getHour()) + double(getMinute()) / 60) - (double(t1.hour) + double(t1.minute) / 60));
     return timeDif;
 }
-
-
-
 
 // << overloaded operator
 ostream& operator<<(ostream& output, const Time& t1)
@@ -122,6 +116,3 @@ istream& operator>>(istream& input, Time& t1)
     return input;
 
 }
-
-
-
