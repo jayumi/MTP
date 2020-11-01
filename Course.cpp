@@ -14,7 +14,7 @@ Course::Course(const string& num, const string& name, const string& days, const 
 
 Course::~Course()
 {
-	cout << "The Course has been deleted." << endl;
+	//cout << "The Course has been deleted." << endl;
 }
 
 //GET FUNCTIONS
