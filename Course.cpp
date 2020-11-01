@@ -9,7 +9,7 @@ Course::Course(const string& num, const string& name, const string& days, const 
 	: courseNum(num), courseName(name), courseDays(days), courseUnits(units),
 	startDate(startD), endDate(endD), startTime(startT), endTime(endT)
 {
-    setCourseDays(courseDays); //uses setCourseDays to format days to uppercase
+	//cout << "This is the constructor" << endl; (TESTING PURPOSES)
 }
 
 Course::~Course()
@@ -76,12 +76,7 @@ Course& Course::setCourseName(const string& name)
 
 Course& Course::setCourseDays(const string& days)
 {
-    string dys = days;
-    for (int i = 0; i < days.length(); i++)
-    {
-            dys[i] = char(toupper(days[i]));
-    }
-	courseDays = dys;
+	courseDays = days;
 	return *this;
 }
 
