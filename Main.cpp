@@ -135,7 +135,7 @@ int main() {
 
         case '3':
         {
-            cout << courseSchedule << endl;
+            cout << "\n\n" << courseSchedule << endl;
             break;
         }
 
