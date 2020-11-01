@@ -12,12 +12,21 @@ int main() {
 
     cout << "Enter your name: ";
     getline(cin, studentName);
-    cout << "Enter semester name: ";
+    cout << "Enter semester name:";
     getline(cin, semesterName);
     cout << "Enter the start date (MM/DD/YYYY): ";
     cin >> startDate;
     cout << "Enter the end date (MM/DD/YYYY): ";
     cin >> endDate;
+    while (startDate > endDate)
+    {
+        cout << startDate << " " << endDate << endl;
+        cout << "End Date cannot be before Start Date. Please re-enter." << endl;
+        cout << "Enter the start date (MM/DD/YYYY): ";
+        cin >> startDate;
+        cout << "Enter the end date (MM/DD/YYYY): ";
+        cin >> endDate;
+    }
     cout << "Enter maximum number of classes: ";
     cin >> maxClass;
 
@@ -34,7 +43,7 @@ int main() {
         cin >> selection;
         cin.ignore();
 
-        switch (selection) 
+        switch (selection)
         {
         case '1':
         {
@@ -72,7 +81,7 @@ int main() {
             cin >> endDate;
 
             Course course(courseNum, courseName, meetingDays, courseUnits, startDate, endDate, startTime, endTime);
-
+            
             if (courseSchedule.addCourse(course))
             {
                 cout << "\nCourse has been successfully added." << endl;
@@ -92,7 +101,7 @@ int main() {
             Date startDate;
             Date endDate;
 
-            double courseUnits;
+            //double courseUnits;
             string courseName, courseNum, meetDays;
 
             if (courseSchedule.getNumOfCourses() == 0)
@@ -102,16 +111,18 @@ int main() {
             }
             cout << "\nEnter Course Number: ";
             getline(cin, courseNum);
+            
+            
             cout << "Enter Course Name: ";
             getline(cin, courseName);
 
             Course course(courseNum, courseName);
 
-            if (courseSchedule.removeCourse(course)) 
+            if (courseSchedule.removeCourse(course))
             {
                 cout << "\nThe course has been successfully removed.\n";
             }
-            else 
+            else
             {
                 cout << "\nERROR: INVALID INPUT!" << endl;
             }
