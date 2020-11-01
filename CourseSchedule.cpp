@@ -63,9 +63,7 @@ bool CourseSchedule::checkDates(const Semester& sem, const Date& startDate, cons
 
 bool CourseSchedule::addCourse(const Course& addCourse)
 {
-	if (numOfCourses < maxSize)
-	{
-		if (checkDates(semester, addCourse.getStartDate(), addCourse.getEndDate()))
+	if ((numOfCourses < maxSize) && (checkDates(semester, addCourse.getStartDate(), addCourse.getEndDate())))
 		{
 			for (int count = 0; count < numOfCourses; count++)
 			{
@@ -83,7 +81,6 @@ bool CourseSchedule::addCourse(const Course& addCourse)
 		{
 			return false;
 		}
-	}
 }
 
 bool CourseSchedule::removeCourse(const Course& remCourse)
