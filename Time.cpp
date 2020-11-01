@@ -67,7 +67,7 @@ int Time::getMinute() const  //must be const since prototype is const
     return minute;
 }
 
-/*PRINT FUNCTIONS:  Normally do not modify private member data so should be const*/
+//PRINT FUNCTIONS
 
 void Time::printUniversal()const  //must be const since prototype is const
 {
