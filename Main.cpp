@@ -78,6 +78,14 @@ int main() {
             cin >> startDate;
             cout << "Enter the end date (MM/DD/YYYY): ";
             cin >> endDate;
+            while (startDate > endDate)
+            {
+                cout << "End Date cannot be before Start Date. Please re-enter." << endl;
+                cout << "Enter the start date (MM/DD/YYYY): ";
+                cin >> startDate;
+                cout << "Enter the end date (MM/DD/YYYY): ";
+                cin >> endDate;
+            }
 
             Course course(courseNum, courseName, meetingDays, courseUnits, startDate, endDate, startTime, endTime);
             
@@ -87,7 +95,7 @@ int main() {
             }
             else
             {
-                cout << "\nERROR: INVALID INPUT!" << endl;
+                cout << "\nERROR: INVALID INPUT! Course was not added." << endl;
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 
