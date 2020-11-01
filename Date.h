@@ -11,8 +11,9 @@ class Date
     private:
         int month; //1-12
         int day; //1-31 depending on month
-        int year; //any year over 1 and not neg
-        void checkDate(); // validate date - sets dates out of range to month - 1, day - 1, year 2000
+        int year; //Year must be within 2000 - 2999 range. If year is (0 - 999) 2000 is added to the year.
+        // validate date - sets dates out of range to month - 1, day - 1, year 2000
+        void checkDate();
 
         
     public:
