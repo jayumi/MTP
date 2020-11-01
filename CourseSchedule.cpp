@@ -90,8 +90,7 @@ bool CourseSchedule::removeCourse(const Course& remCourse)
 		int num = -1;
 		for (int count = 0; count < numOfCourses; count++)
 		{
-			if (coursePtr[count].getCourseNum() == remCourse.getCourseNum()
-				&& coursePtr[count].getCourseName() == remCourse.getCourseName())
+			if (coursePtr[count].getCourseNum() == remCourse.getCourseNum())
 			{
 				num = count;
 			}
