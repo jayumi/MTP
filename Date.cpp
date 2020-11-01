@@ -30,6 +30,21 @@ void Date::checkDate()
 {
     static const int daysPerMonth[13] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
     
+    // converts invalid year to 4 digits
+    if (year >= 0 && year <= 999)
+    {
+        year = year + 2000;
+    }
+    //if year is anything else it defaults to 2000
+    else if (year >= 2000 && year <= 3000)
+    {
+        //no change to year
+    }
+    else
+    {
+        year = 2000;
+    }
+    
     if(month <= 0 || month > 12)
     {
         month = 1;
@@ -39,13 +54,6 @@ void Date::checkDate()
     {
         day = 1;
     }
-
-    
-    if (year <= 1989)
-    {
-        year = 1990;
-    }
-
 }
 
 
