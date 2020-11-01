@@ -12,7 +12,7 @@ int main() {
 
     cout << "Enter your name: ";
     getline(cin, studentName);
-    cout << "Enter semester name:";
+    cout << "Enter semester name: ";
     getline(cin, semesterName);
     cout << "Enter the start date (MM/DD/YYYY): ";
     cin >> startDate;
@@ -20,7 +20,6 @@ int main() {
     cin >> endDate;
     while (startDate > endDate)
     {
-        cout << startDate << " " << endDate << endl;
         cout << "End Date cannot be before Start Date. Please re-enter." << endl;
         cout << "Enter the start date (MM/DD/YYYY): ";
         cin >> startDate;
@@ -41,7 +40,7 @@ int main() {
         cout << "3) Print a Semester Schedule" << endl;
         cout << "q) Quit the program" << endl;
         cin >> selection;
-        cin.ignore();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
 
         switch (selection)
         {
@@ -68,7 +67,7 @@ int main() {
             getline(cin, courseName);
             cout << "Number of units for course: ";
             cin >> courseUnits;
-            cin.ignore();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
             cout << "Enter course meeting days (MTWTHF): ";
             getline(cin, meetingDays);
             cout << "Enter the starting time (00:00 AM/PM): ";
@@ -89,7 +88,11 @@ int main() {
             else
             {
                 cout << "\nERROR: INVALID INPUT!" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                
             }
+        
             break;
         }
 
@@ -106,21 +109,22 @@ int main() {
 
             if (courseSchedule.getNumOfCourses() == 0)
             {
-                cout << "\nYou currently have no courses to remove.\n";
+                cout << "\nYou currently have no courses to remove." << endl;
                 break;
             }
-            cout << "\nEnter Course Number: ";
+            cout << courseSchedule;
+            cout << "\nEnter Course Number you would like to remove: ";
             getline(cin, courseNum);
             
             
-            cout << "Enter Course Name: ";
-            getline(cin, courseName);
+            //cout << "Enter Course Name: ";
+            //getline(cin, courseName);
 
             Course course(courseNum, courseName);
 
             if (courseSchedule.removeCourse(course))
             {
-                cout << "\nThe course has been successfully removed.\n";
+                cout << "\nThe course has been successfully removed." << endl;
             }
             else
             {
@@ -131,7 +135,7 @@ int main() {
 
         case '3':
         {
-            cout << courseSchedule;
+            cout << courseSchedule << endl;
             break;
         }
 
