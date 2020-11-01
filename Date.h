@@ -1,6 +1,7 @@
 
 #ifndef DATE_H
 #define DATE_H
+using namespace std;
 
 class Date
 {
@@ -10,12 +11,12 @@ class Date
     private:
         int month; //1-12
         int day; //1-31 depending on month
-        int year; //any year over 1989 and not neg
-        void checkDate(); // validate date - sets dates out of range to month - 1, day - 1, year 1990
+        int year; //any year over 1 and not neg
+        void checkDate(); // validate date - sets dates out of range to month - 1, day - 1, year 2000
 
         
     public:
-        Date(int = 1, int = 1, int = 1990);
+        Date(int = 1, int = 1, int = 2000);
         ~Date();
         Date& setDate(int, int, int);
         Date& setMonth(int);
