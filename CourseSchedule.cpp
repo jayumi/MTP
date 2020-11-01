@@ -47,11 +47,7 @@ void CourseSchedule::setStudentName(string name)
 //Check Valid Dates - Utility Function
 bool CourseSchedule::checkDates(const Semester& sem, const Date& startDate, const Date& endDate) const
 {
-	if (sem.getStartDate() > startDate)
-	{
-		return false;
-	}
-	else if (sem.getEndDate() < endDate)
+    if ((sem.getStartDate() > startDate) || (sem.getEndDate() < endDate))
 	{
 		return false;
 	}
